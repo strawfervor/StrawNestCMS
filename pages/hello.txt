@@ -1,0 +1,10 @@
+title: Hello!
+
+Hi there,
+Welcome to your newly "installed" StrawNestCMS!
+
+This is your very first blog post. If you'd like to customize your page, start by exploring the `config.php` file. Want to add new posts? Simply place text files into the `pages` directory. For images, drop them into the `images` folder.
+
+Need help writing or formatting your posts? Check out [guides here](#).  
+
+Enjoy using StrawNestCMS!
