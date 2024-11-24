@@ -75,6 +75,13 @@
         }
     ); 
     }
+
+    function main_contents_preview($preview_len, $items) {
+        echo "
+            <p>Page number {$_SESSION['page']} / {$_SESSION['num_of_pages']}</p>
+        ";
+
+    }
 ?>
 
 <!DOCTYPE html>
@@ -101,6 +108,9 @@
     </debug>
 
     <main>
+        <?php
+            main_contents_preview($preview_len, $items);
+        ?>
     </main>
 </body>
 </html>
