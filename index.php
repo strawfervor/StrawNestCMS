@@ -77,10 +77,38 @@
     }
 
     function main_contents_preview($preview_len, $items) {
+        $first_index = ($_SESSION['page'] - 1) * $items;
         echo "
             <p>Page number {$_SESSION['page']} / {$_SESSION['num_of_pages']}</p>
+            <p>First index: {$first_index}</p>
         ";
+        if ($first_index <= count($_SESSION['pages_array'])) {
+            for ($i = $first_index; $i < $first_index + 5; $i++) {
+                if (!empty($_SESSION['pages_array'][$i])) {
+                    entry_preview($preview_len, $i);
+                }
+            }
+        }
 
+    }
+
+    //function is generating single entry preview for main page
+    function entry_preview($preview_len, $entry_index) {
+        $page_file = fopen($_SESSION['pages_array'][$entry_index], "r");
+        $preview_string = "";
+        $preview_body = "";
+        $letters_count = 0;
+        while(!feof($page_file)) {
+            $page_line = fgets($page_file);
+            if (match_config_line($page_line, "=title:")) {
+                $preview_string .= "<h3>" . substr($page_line, 7) . "</h3>";
+            } elseif ($letters_count <= $preview_len) {
+                $preview_body .= $page_line;
+                $letters_count += strlen($page_line) ;
+            }
+        }
+        $preview_string .= substr($preview_body, 0, $preview_len);
+        echo $preview_string;
     }
 ?>
 

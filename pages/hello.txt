@@ -1,4 +1,4 @@
-title: Hello!
+=title: Hello!
 
 Hi there,
 Welcome to your newly "installed" StrawNestCMS!
