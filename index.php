@@ -48,9 +48,7 @@
     }
 
 //setting $_SESSION varibles:
-    if (empty($_SESSION['page'])) {
-        $_SESSION['page'] = 1;
-    }
+    $_SESSION['page'] = isset($_GET['page']) ? $_GET['page'] : 1;;
     if (empty($_SESSION['num_of_pages'])) {
         $_SESSION['num_of_pages'] = ceil(number_of_files() / $items);
     }
@@ -86,6 +84,7 @@
     ); 
     }
 
+//generating main content - showing header and description of $items items per page
     function main_contents_preview($preview_len, $items) {
         $first_index = ($_SESSION['page'] - 1) * $items;
         //debug infos in this echo, they should be removed
@@ -100,10 +99,22 @@
                 }
             }
         }
-
     }
 
-    //function is generating single entry preview for main page
+//navigation through pages
+    function navigation() {
+        echo "<center>";
+        for ($i = 1; $i <= ($_SESSION['num_of_pages']); $i++){
+            if ($_SESSION['page'] == $i) {
+                echo "<b>$i</b> ";
+            } else {
+                echo "<a href='index.php?page=$i'>$i </a>";
+            }
+        }
+        echo "</center>";
+    }
+
+//function is generating single entry preview for main page; need to add limit of displaying number of numbers
     function entry_preview($preview_len, $entry_index) {
         $page_file = fopen($_SESSION['pages_array'][$entry_index], "r");
         $preview_string = "";
@@ -151,5 +162,8 @@
             main_contents_preview($preview_len, $items);
         ?>
     </main>
+        <?php
+            navigation();
+        ?>
 </body>
 </html>
