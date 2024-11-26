@@ -9,7 +9,7 @@
     $items = 5; //number of items to be displayed on main page
     //$_SESSION['page']; current page on main page
     //$_SESSION['num_of_pages']; total number of pages with items
-    $timeout = 1200;//session timeout time
+    $timeout = 600;//session timeout time
     $_SESSION['last_activity'] = time(); //set 'last_activity' time to now
 
 
@@ -48,7 +48,7 @@
     }
 
 //setting $_SESSION varibles:
-    $_SESSION['page'] = isset($_GET['page']) ? $_GET['page'] : 1;;
+    $_SESSION['page'] = isset($_GET['page']) ? $_GET['page'] : 1;//setting current page, getting it from get 'page'
     if (empty($_SESSION['num_of_pages'])) {
         $_SESSION['num_of_pages'] = ceil(number_of_files() / $items);
     }
