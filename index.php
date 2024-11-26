@@ -9,6 +9,16 @@
     $items = 5; //number of items to be displayed on main page
     //$_SESSION['page']; current page on main page
     //$_SESSION['num_of_pages']; total number of pages with items
+    $timeout = 1200;//session timeout time
+    $_SESSION['last_activity'] = time(); //set 'last_activity' time to now
+
+
+//checking for activity timeout to destroy session()
+    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $timeout)) {
+        // Zniszcz sesję
+        $_SESSION = array();
+        session_destroy();
+    }
 
 //loop for reading varibles from config file
     while (!feof($config)) {
@@ -78,6 +88,7 @@
 
     function main_contents_preview($preview_len, $items) {
         $first_index = ($_SESSION['page'] - 1) * $items;
+        //debug infos in this echo, they should be removed
         echo "
             <p>Page number {$_SESSION['page']} / {$_SESSION['num_of_pages']}</p>
             <p>First index: {$first_index}</p>
