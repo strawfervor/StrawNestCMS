@@ -5,6 +5,7 @@
     $title = "";
     $heading1 = "";
     $heading2 = "";
+    $footer = "";
     $preview_len = 300; //entry item preview length
     $items = 5; //number of items to be displayed on main page
     //$_SESSION['page']; current page on main page
@@ -32,6 +33,9 @@
         } elseif (match_config_line($config_line, "heading2:")) {
             global $heading2; 
             $heading2 = substr($config_line, 9);
+        } elseif (match_config_line($config_line, "footer:")) {
+            global $footer; 
+            $footer = substr($config_line, 7);
         } elseif (match_config_line($config_line, "preview_len:")) {
             global $preview_len;
             $temp = intval(substr($config_line, 12));
@@ -88,10 +92,10 @@
     function main_contents_preview($preview_len, $items) {
         $first_index = ($_SESSION['page'] - 1) * $items;
         //debug infos in this echo, they should be removed
-        echo "
-            <p>Page number {$_SESSION['page']} / {$_SESSION['num_of_pages']}</p>
-            <p>First index: {$first_index}</p>
-        ";
+        //echo "
+        //    <p>Page number {$_SESSION['page']} / {$_SESSION['num_of_pages']}</p>
+        //    <p>First index: {$first_index}</p>
+        //";
         if ($first_index <= count($_SESSION['pages_array'])) {
             for ($i = $first_index; $i < $first_index + 5; $i++) {
                 if (!empty($_SESSION['pages_array'][$i])) {
@@ -103,7 +107,6 @@
 
 //navigation through pages
     function navigation() {
-        echo "<center>";
         for ($i = 1; $i <= ($_SESSION['num_of_pages']); $i++){
             if ($_SESSION['page'] == $i) {
                 echo "<b>$i</b> ";
@@ -111,7 +114,6 @@
                 echo "<a href='index.php?page=$i'>$i </a>";
             }
         }
-        echo "</center>";
     }
 
 //function is generating single entry preview for main page; need to add limit of displaying number of numbers
@@ -157,13 +159,20 @@
         echo $_SESSION['pages_array'][0]; ?></p>
     </debug>
 
-    <main>
+    <main style="margin-top: 6em;">
         <?php
             main_contents_preview($preview_len, $items);
         ?>
     </main>
+    <nav style="margin-top: 1.5em;">
         <?php
             navigation();
         ?>
+    </nav>
+    <footer style="margin-top: 6em;">
+        <?php
+            echo $footer;
+        ?>
+    </footer>
 </body>
 </html>
