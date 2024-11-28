@@ -16,7 +16,7 @@
 
 //checking for activity timeout to destroy session()
     if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $timeout)) {
-        // Zniszcz sesję
+        // new array + destroy session
         $_SESSION = array();
         session_destroy();
     }
@@ -125,7 +125,7 @@
         while(!feof($page_file)) {
             $page_line = fgets($page_file);
             if (match_config_line($page_line, "=title:")) {
-                $preview_string .= "<h3>" . substr($page_line, 7) . "</h3>";
+                $preview_string .= "<h3><a href=page.php?entry=" . prepare_link_to_get($entry_index) .">" . substr($page_line, 7) . "</a></h3>";
             } elseif ($letters_count <= $preview_len) {
                 $preview_body .= $page_line;
                 $letters_count += strlen($page_line) ;
@@ -134,10 +134,17 @@
         $preview_string .= substr($preview_body, 0, $preview_len);
         echo $preview_string;
     }
+
+    function prepare_link_to_get($index) {
+        $filename = $_SESSION['pages_array'][$index];
+        $filename = substr($filename, 6, -4);
+        return $filename;
+    }
 ?>
 
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -147,32 +154,36 @@
     ?>
 </head>
 <body>
-    <h1><?php echo $heading1; ?></h1>
 
-    <h2><?php echo $heading2; ?></h2>
+    <h1 style="margin-top: 1.5em;"><?php echo $heading1; ?></h1>
 
-    <debug>
+    <h2 style="margin-top: -0.5em;"><?php echo $heading2; ?></h2>
+
+    <!-- <debug>
         <p>Number of files: <?php echo number_of_files(); ?></p>
         <p>Number of pages: <?php echo $_SESSION['num_of_pages']; ?></p>
         <p>Current page: <?php echo $_SESSION['page']; ?></p>
         <p>Newest page: <?php create_pages_array();
         echo $_SESSION['pages_array'][0]; ?></p>
-    </debug>
+    </debug> -->
 
     <main style="margin-top: 6em;">
         <?php
             main_contents_preview($preview_len, $items);
         ?>
     </main>
+
     <nav style="margin-top: 1.5em;">
         <?php
             navigation();
         ?>
     </nav>
-    <footer style="margin-top: 6em;">
+
+    <footer style="margin-top: 10em;">
         <?php
             echo $footer;
         ?>
     </footer>
+
 </body>
 </html>

@@ -1,6 +1,6 @@
 title: StrawNestCMS
 heading1: StrawNestCMS <3
-heading2: What a wonderfull cms :D :D :D
+heading2: What a wonderfull cms!
 preview_len: 300
 items: 5
 footer: &copy;2024 strawfervor

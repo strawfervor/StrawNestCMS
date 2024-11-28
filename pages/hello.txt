@@ -4,8 +4,12 @@ Hi there,
 
 Welcome to your newly "installed" StrawNestCMS!
 
-This is your very first blog post. If you'd like to customize your page, start by exploring the `config.php` file. Want to add new posts? Simply place text files into the `pages` directory. For images, drop them into the `images` folder.
+This is your very first blog post. To customize your page, start by exploring the `config.php` file. Want to add new posts? Simply place text files into the `pages` directory. For images, add them to the `images` folder and include them in your posts using the `=image:` syntax.
 
-Need help writing or formatting your posts? Check out [guides here](#).  
+For links, it's best to use standard HTML tags, as they are fully supported.
+
+A blank line between text sections creates a new paragraph.
+
+That's all you need to create an awesome blog :D:D:D:D
 
 Enjoy using StrawNestCMS!
