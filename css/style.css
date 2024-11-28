@@ -1,0 +1,71 @@
+:root {
+  --dark:  #08141e;
+  --bright: #816271;
+  --link: #997577;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  font-family: var(--font-sans-serif);
+}
+
+html {
+  font-size: calc(16px + ((100vw - 600px) / 250));
+  padding: 0;
+  text-decoration-skip-ink: "auto";
+  line-height: 1.953rem;
+  margin: auto;
+  min-height: 100%;
+  overflow-x: hidden;
+  max-width: 1140px;
+}
+
+body {
+  padding: 0;
+  margin: calc((100vh / 25) * 1.6) calc((100vw / 25) * 1.6);
+  background-color: var(--dark);
+  color: var(--bright);
+  caret-color: var(--bright);
+  word-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 1rem;
+  margin-top: 1em;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+h2 {
+  font-size: 2.4rem;
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: 1.6rem;
+  line-height: 1.2;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+p {
+  margin-bottom: 1.6rem;
+}

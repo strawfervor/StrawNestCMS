@@ -73,6 +73,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
     <?php
     //setting title
         echo "<title>{$title}</title>";
@@ -80,7 +81,7 @@
 </head>
 <body>
 
-    <h1 style="margin-top: 1.5em;"><?php echo $heading1; ?></h1>
+    <h1 style="margin-top: 1.5em;"><?php echo "<a href='index.php'>" . $heading1 . "</a>"; ?></h1>
 
     <h2 style="margin-top: -0.5em;"><?php echo $heading2; ?></h2>
 
