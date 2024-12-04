@@ -37,7 +37,7 @@
 
 //function for searching for parameter in config file
     function match_config_line($config_line, $config_parameter) {
-        if (strpos($config_line, $config_parameter) !== false || strpos($config_line, $config_parameter) === 0) {
+        if (strpos($config_line, $config_parameter) !== false && strpos($config_line, $config_parameter) === 0) {
             return true;
         }
         return false;
@@ -51,6 +51,10 @@
             $page_line = fgets($page_file);
             if (match_config_line($page_line, "=title:")) {
                 $page_body .= "<h3>" . substr($page_line, 7) . "</h3><p>";
+            } elseif (match_config_line($page_line, "=image:")) {
+                $page_body .= "<img style='width: 100%' src='images/" . substr($page_line, 7) . "'>";
+            } elseif (match_config_line($page_line, "=imageSmall:")) {
+                $page_body .= "<img style='width: 30%' src='images/" . substr($page_line, 12) . "'>";
             } elseif ($page_line === '' || empty($page_line) || trim($page_line) === '') {
                 $page_body .= "</p><p>";
             } else {
