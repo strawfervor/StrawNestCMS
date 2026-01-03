@@ -12,5 +12,5 @@ A lightweight PHP CMS that uses flat files for fast and simple content managemen
 
 ## Admin Panel
 - to access admin panel go to /admin
-- default password is admin123 (plese change it as soon as possible)
+- default password is admin123 (please change it as soon as possible)
 - from admin panel you can add new pages, edit existing pages, delete pages, edit configuration, change password
